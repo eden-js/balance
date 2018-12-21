@@ -11,7 +11,7 @@ class BalanceStore extends Events {
   /**
    * construct balance store
    */
-  constructor () {
+  constructor() {
     // set observable
     super();
 
@@ -28,7 +28,7 @@ class BalanceStore extends Events {
     this._pending = this._pending.bind(this);
 
     // listen to socket for setting
-    socket.on('balance',         this._balance);
+    socket.on('balance', this._balance);
     socket.on('balance.pending', this._pending);
   }
 
@@ -39,7 +39,7 @@ class BalanceStore extends Events {
    *
    * @return {*}
    */
-  get (name) {
+  get(name) {
     // return value
     return this[name];
   }
@@ -50,9 +50,9 @@ class BalanceStore extends Events {
    * @param  {String} name
    * @param  {*} value
    */
-  set (name, value) {
+  set(name, value) {
     // get value
-    let old = this[name];
+    const old = this[name];
 
     // set setting
     this[name] = value;
@@ -74,7 +74,7 @@ class BalanceStore extends Events {
    *
    * @private
    */
-  _balance (balance) {
+  _balance(balance) {
     // trigger sicbo
     this.set('balance', balance);
   }
@@ -86,7 +86,7 @@ class BalanceStore extends Events {
    *
    * @private
    */
-  _pending (pending) {
+  _pending(pending) {
     // trigger sicbo
     this.set('pending', pending);
   }

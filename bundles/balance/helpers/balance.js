@@ -11,12 +11,12 @@ class BalanceHelper extends Helper {
   /**
    * construct balance helper
    */
-  constructor () {
+  constructor() {
     // run super
     super();
 
     // bind methods
-    this.add      = this.add.bind(this);
+    this.add = this.add.bind(this);
     this.subtract = this.subtract.bind(this);
 
     // bind private methods
@@ -31,7 +31,7 @@ class BalanceHelper extends Helper {
    *
    * @returns {Promise}
    */
-  async add (user, amount) {
+  async add(user, amount) {
     // refresh user
     await user.lock();
 
@@ -60,7 +60,7 @@ class BalanceHelper extends Helper {
     user.set('balance', Math.floor(Math.round((current + amount) * 100)) / 100);
 
     // log this
-    this._log(user, 'add', 'added ' + amount + ' to balance - new balance "' + user.get('balance') + '"', true);
+    this._log(user, 'add', `added ${amount} to balance - new balance "${user.get('balance')}"`, true);
 
     // save user
     await user.save();
@@ -83,7 +83,7 @@ class BalanceHelper extends Helper {
    *
    * @returns {Promise}
    */
-  async subtract (user, amount) {
+  async subtract(user, amount) {
     // refresh user
     await user.lock();
 
@@ -118,7 +118,7 @@ class BalanceHelper extends Helper {
     user.set('balance', Math.floor(Math.round((current - amount) * 100)) / 100);
 
     // log this
-    this._log(user, 'subtract', 'subracted ' + amount + ' from balance - new balance "' + user.get('balance') + '"', true);
+    this._log(user, 'subtract', `subracted ${amount} from balance - new balance "${user.get('balance')}"`, true);
 
     // save user
     await user.save();
@@ -141,10 +141,10 @@ class BalanceHelper extends Helper {
    * @param  {string}   message
    * @param  {Boolean}  success
    */
-  _log (user, way, message, success) {
+  _log(user, way, message, success) {
     // log with log function
-    this.logger.log((success ? 'info' : 'error'), ' [' + colors.green(user.get ('username')) + '] ' + message, {
-      'class' : 'balance'
+    this.logger.log((success ? 'info' : 'error'), ` [${colors.green(user.get('username'))}] ${message}`, {
+      class : 'balance',
     });
   }
 }

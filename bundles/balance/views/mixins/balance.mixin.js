@@ -4,11 +4,11 @@ riot.mixin('balance', {
   /**
    * on init function
    */
-  'init' : function () {
+  init() {
     // set value
     this.balance = {
-      'balance' : (this.eden.get('user') || {}).balance || 0,
-      'pending' : (this.eden.get('user') || {}).pending || 0
+      balance : (this.eden.get('user') || {}).balance || 0,
+      pending : (this.eden.get('user') || {}).pending || 0,
     };
 
     // on mount update
@@ -19,5 +19,5 @@ riot.mixin('balance', {
 
     // on form change
     this.balance.on('update', this.update);
-  }
+  },
 });
